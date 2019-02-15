@@ -3,7 +3,7 @@ spring:
   application:
     name: todo-service
   datasource:
-    url: jdbc:mysql://localhost:3306/scheduler
+    url: jdbc:mysql://localhost:3306/scheduler?autoReconnect=true&useSSL=false
     username: db_root
     password: password
     maxActive: 5
@@ -45,7 +45,7 @@ spring:
   application:
     name: todo-service
   datasource:
-    url: jdbc:mysql://localhost:3306/scheduler
+    url: jdbc:mysql://localhost:3306/scheduler?autoReconnect=true&useSSL=false
     username: db_root
     password: password
     maxActive: 5
