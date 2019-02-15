@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StopWatch;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +37,7 @@ public class TodoController {
 		return new ResponseEntity<>(todo, HttpStatus.OK);
 	}
 	
-	@GetMapping("/todo/all")
+	@GetMapping("/todo/list")
 	public ResponseEntity<List<ToDo>> getAllTodo() {
 		StopWatch watch = new StopWatch();
 		watch.start();
@@ -48,8 +49,8 @@ public class TodoController {
 	}
 	
 	
-	@PostMapping("/todo")
-	public ResponseEntity<ToDo> getTodo(@RequestBody ToDo todo) {
+	@PostMapping("/todo/")
+	public ResponseEntity<ToDo> createTodo(@RequestBody ToDo todo) {
 		StopWatch watch = new StopWatch();
 		watch.start();
 		LOGGER.info("TODO Service: save todo {}", todo.getName());
@@ -57,6 +58,17 @@ public class TodoController {
 		watch.stop();
 		LOGGER.info("TODO Service: responded in {} ms", watch.getLastTaskTimeMillis());
 		return new ResponseEntity<>(todo, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/todo/{id}")
+	public ResponseEntity<Boolean> deleteTodo(@PathVariable("id") Long id) throws Exception {
+		StopWatch ticker = new StopWatch();
+		ticker.start();
+		LOGGER.info("Deleting todo for id: {}", id);
+		Boolean result = todoService.delete(id);
+		ticker.stop();
+		LOGGER.info("Deleting took {} Ms", ticker.getLastTaskTimeMillis());
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 

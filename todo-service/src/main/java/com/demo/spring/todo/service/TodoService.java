@@ -57,5 +57,13 @@ public class TodoService {
 		}
 		return completeStatus;
 	}
+	
+	public boolean delete(Long id) throws Exception {
+		boolean result = false;
+		LOGGER.debug("Deleting todo: {}", id);
+		repository.deleteById(id);
+		result = true;
+		return result;
+	}
 
 }
