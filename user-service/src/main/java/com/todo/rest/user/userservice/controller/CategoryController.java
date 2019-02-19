@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.todo.rest.user.userservice.jpa.entity.Category;
@@ -35,4 +37,17 @@ public class CategoryController {
 		
 	}
 
+	@PostMapping("/category/")
+	public ResponseEntity<Category> saveCategory(@RequestBody Category saveCategory) throws Exception {
+		
+		StopWatch watch = new StopWatch();
+		watch.start();
+		LOGGER.debug("Create new category: {}", saveCategory.getName());
+		Category category = categoryService.saveCategory(saveCategory);
+		watch.stop();
+		LOGGER.info("Category saved, took {} Ms", watch.getLastTaskTimeMillis());
+		return new ResponseEntity<Category>(category, HttpStatus.OK);
+		
+	}
+	
 }

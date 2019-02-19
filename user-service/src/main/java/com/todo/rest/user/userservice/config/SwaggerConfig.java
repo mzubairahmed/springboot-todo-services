@@ -1,4 +1,4 @@
-package com.demo.spring.todo.config;
+package com.todo.rest.user.userservice.config;
 
 import java.util.Collections;
 
@@ -13,15 +13,15 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@Configuration
 @EnableSwagger2
+@Configuration
 public class SwaggerConfig {
 	
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.demo.spring.todo.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.todo.rest.user.userservice.controller"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(apiInfo());
@@ -30,16 +30,15 @@ public class SwaggerConfig {
 	
 	private ApiInfo apiInfo() {
 	    return new ApiInfo(
-	      "Todo Services", 
+	      "User Services", 
 	      "Use the following:<br>"
-	      + "<li> GET: /todo/{id} - to get specefic todo item </li>"
-	      + "<li> POST: /todo - with todo Object will create/update the existing todo item </li>"
-	      + "<li> GET: /todo/list - will get all the incomplete todos list </li>"
-	      + "<li> DELETE: /todo/id - will delete the specific todo item", 
+	      + "<li> GET: /category/{id} - to get specefic todo item </li>"
+	      + "<li> POST: /category - with todo Object will create/update the existing todo item </li>"
+	      + "<li> GET: /category/list - will get all the incomplete todos list </li>"
+	      + "<li> DELETE: /category/{id} - will delete the specific todo item", 
 	      "API TOS", 
 	      "Terms of service", 
 	      new Contact("John Doe", "www.example.com", "myeaddress@company.com"), 
 	      "License of API", "API license URL", Collections.emptyList());
 	}
-
 }
