@@ -1,5 +1,7 @@
 package com.todo.rest.user.userservice.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,11 @@ public class UserService {
 			LOGGER.info("User deleted successfully.");
 			return Boolean.TRUE;
 		}
+	}
+	
+	public List<User> listAllUsers() {
+		LOGGER.info("Getting list of all users..");
+		return (List<User>) userRepository.findAll();
 	}
 	
 	public boolean userExists(String userName) throws Exception {
