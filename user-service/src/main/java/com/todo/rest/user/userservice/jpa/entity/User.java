@@ -10,10 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "todo_user")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
 	@Id
@@ -39,8 +43,9 @@ public class User {
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
 
-	@Column(name = "supervisor_id")
-	private Long supervisorId;
+	@OneToOne  (fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "supervisor_id", nullable = true)
+	private User supervisor;
 
 	public Long getId() {
 		return id;
@@ -98,12 +103,12 @@ public class User {
 		this.category = category;
 	}
 
-	public Long getSupervisorId() {
-		return supervisorId;
+	public User getSupervisor() {
+		return supervisor;
 	}
 
-	public void setSupervisorId(Long supervisorId) {
-		this.supervisorId = supervisorId;
+	public void setSupervisor(User supervisor) {
+		this.supervisor = supervisor;
 	}
 
 }
