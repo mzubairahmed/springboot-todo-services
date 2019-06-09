@@ -17,3 +17,23 @@ management:
     security:
         enabled: false
 
+---
+
+spring:
+    profile: uat
+    application:
+        name: discovery-server
+
+server:
+    port: 9761
+
+eureka:
+    client:
+        registerWithEureka: false
+        fetchRegistry: false
+    server:
+        enableSelfPreservation: false
+
+management:
+    security:
+        enabled: false
