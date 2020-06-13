@@ -1,5 +1,5 @@
 spring:
-  profile: development
+  profiles: development
   application:
     name: todo-service
   datasource:
@@ -41,7 +41,7 @@ management:
 ---
 
 spring:
-  profile: uat
+  profiles: uat
   application:
     name: todo-service
   datasource:
