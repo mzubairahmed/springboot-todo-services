@@ -1,5 +1,5 @@
 spring:
-    profile: development
+    profiles: development
     application:
         name: discovery-server
 
@@ -20,7 +20,7 @@ management:
 ---
 
 spring:
-    profile: uat
+    profiles: uat
     application:
         name: discovery-server
 
