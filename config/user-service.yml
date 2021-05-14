@@ -1,12 +1,11 @@
 spring:
-  profiles:
-    - development
+  profiles: development
   application:
     name: user-service
   datasource:
     url: jdbc:mysql://localhost:3306/scheduler?autoReconnect=true&useSSL=false
-    username: db_root
-    password: password
+    username: root
+    password: aDm1n!strator@2021
     maxActive: 5
     maxIdle: 1
     maxWait: 30000
@@ -42,7 +41,7 @@ management:
 ---
 
 spring:
-  profile: uat
+  profiles: uat
   application:
     name: user-service
   datasource:
